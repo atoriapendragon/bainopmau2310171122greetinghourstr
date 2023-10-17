@@ -42,13 +42,25 @@ greeting('1pm')              | Good afternoon!        | 10
 # 24-hours format
 greeting('06:00')            | Good morning!          | 11
 greeting('0600')             | Good morning!          | 12
-greeting('21:00')            | Good evening!          | 13
+greeting('21:00' )            | Good evening!          | 13
 greeting('2100')             | Good evening!          | 14
 
 """
 #endregion debai
-
-#region bailam
+import re
 def greeting(hour_str):
-  return 'todo'
+  d = hour_str.lower()
+  a = re.findall(r'\d+',d)
+  f = int(a[0]) if int(a[0]) < 100 else int(int(a[0])/100)
+  c = f if f < 12 and 'p' not in d else f+12
+  if c > 24:
+    c = c - 12
+  if c in range(0,11):
+    return 'Good morning!'
+  elif c in range(12,17):
+    return 'Good afternoon!'
+  else:
+    return 'Good evening!'
+#region bailam
+
 #endregion bailam
